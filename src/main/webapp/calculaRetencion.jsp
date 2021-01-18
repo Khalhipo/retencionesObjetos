@@ -15,15 +15,17 @@
     <body>
         <h1>Calculando retenciones</h1>
         
+        
         <% 
-        String salario = request.getParameter("salario");
+        double salario = Double.parseDouble(request.getParameter("salario"));
         String nombre = request.getParameter("nombre");
-        Retencion nuevaRetencion = new Retencion(salario);
         %>
+        <jsp:useBean id="ret" class="clases.Retencion"/>
+        <jsp:setProperty name="ret" property="salario" value="<%= salario %>"/>
         
         <h3>Nombre empleado: <%= nombre %> </h3>
-        <h3>Salario bruto: <%= nuevaRetencion.getSalario() %> €</h3>
-        <h3>Retención: <%= nuevaRetencion.getRetencion() %> €</h3>
-        <h3>Salario neto: <%= nuevaRetencion.getSalarioNeto() %> €</h3>
+        <h3>Salario bruto: <jsp:getProperty name="ret" property="salario"/> €</h3>
+        <h3>Retención: <jsp:getProperty name="ret" property="retencion"/> €</h3>
+        <h3>Salario neto: <jsp:getProperty name="ret" property="salarioNeto"/> €</h3>
     </body>
 </html>
